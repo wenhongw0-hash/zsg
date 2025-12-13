@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>紫苏梗溯源 - 云南永顺堂中药饮片有限公司</title>
+
+<style>
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#f2f2f2;
+    color:#333;
+}
+.container{
+    max-width:880px;
+    margin:auto;
+    padding:15px;
+}
+.section{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+.section h2{
+    font-size:20px;
+    margin:0 0 14px;
+    border-left:4px solid #4CAF50;
+    padding-left:10px;
+}
+.text-item{
+    font-size:15px;
+    line-height:1.6;
+    margin:6px 0;
+}
+
+/* 目录按钮 */
+.toc-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:46px;
+    height:46px;
+    background:rgba(0,0,0,.6);
+    border-radius:50%;
+    color:#fff;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:1000;
+}
+
+/* 目录面板 */
+.toc{
+    position:fixed;
+    top:80px;
+    right:20px;
+    width:150px;
+    background:rgba(255,255,255,.95);
+    border-radius:12px;
+    padding:10px;
+    box-shadow:0 4px 16px rgba(0,0,0,.2);
+    display:none;
+    z-index:999;
+}
+.toc div{
+    background:#f0f0f0;
+    border-radius:8px;
+    padding:8px;
+    margin-bottom:8px;
+    text-align:center;
+    font-size:14px;
+    cursor:pointer;
+}
+.toc div.active{
+    background:#4CAF50;
+    color:#fff;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+    .toc,.toc-toggle{ right:10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 目录按钮 -->
+<div class="toc-toggle" id="tocBtn">☰</div>
+
+<!-- 目录 -->
+<div class="toc" id="toc">
+    <div data-target="base">种植基地</div>
+    <div data-target="grow">种植溯源</div>
+    <div data-target="harvest">采收信息</div>
+</div>
+
+<div class="container">
+
+    <div id="base" class="section">
+        <h2>种植基地信息</h2>
+        <div class="text-item">供应商信息：安国市泽茂厚中药材经营部13785210066</div>
+        <div class="text-item">产区：河北安国</div>
+        <div class="text-item">基源：本品为唇形科植物紫苏Perilla frutescens(L.)Britt.的干燥茎</div>
+        <div class="text-item">基地面积：500亩</div>
+        <div class="text-item">原料农药使用：无</div>
+    </div>
+
+    <div id="grow" class="section">
+        <h2>种植溯源</h2>
+        <div class="text-item">种植时间：2025年3月</div>
+        <div class="text-item">种植面积：500亩</div>
+        <div class="text-item">原料生长周期：7个月</div>
+    </div>
+
+    <div id="harvest" class="section">
+        <h2>采收信息</h2>
+        <div class="text-item">采收时间：2025年10月</div>
+        <div class="text-item">实际总产量：750吨</div>
+        <div class="text-item">初加工开始时间:2025-11-21</div>
+        <div class="text-item">初加工数量：750吨</div>
+    </div>
+
+</div>
+
+<script>
+const toc = document.getElementById("toc");
+const btn = document.getElementById("tocBtn");
+let open = false;
+
+btn.onclick = () => {
+    open = !open;
+    toc.style.display = open ? "block" : "none";
+};
+
+document.querySelectorAll(".toc div").forEach(item=>{
+    item.onclick = ()=>{
+        document.getElementById(item.dataset.target)
+            .scrollIntoView({behavior:"smooth"});
+        toc.style.display="none";
+        open=false;
+    };
+});
+
+const sections = document.querySelectorAll(".section");
+const tocItems = document.querySelectorAll(".toc div");
+
+window.addEventListener("scroll",()=>{
+    let i=sections.length;
+    while(--i && window.scrollY+200<sections[i].offsetTop){}
+    tocItems.forEach(d=>d.classList.remove("active"));
+    tocItems[i].classList.add("active");
+});
+</script>
+
+</body>
+</html>
